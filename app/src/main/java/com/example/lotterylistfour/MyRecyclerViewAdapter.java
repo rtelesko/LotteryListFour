@@ -57,7 +57,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         void onItemClick(View view, int position);
     }
 
-    // Stores and recycles views as they are scrolled off screen
+    /* ViewHolder: Stores and recycles views as they are scrolled off screen
+    In general, we declare nested classes as static, when it has no dependency on the Outer class.
+    In our case, the ViewHolder class references a member variable from
+    the Adapter class (i.e. mClickListener), therefore we can NOT declare it as static.
+    */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
 
