@@ -32,14 +32,29 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // Binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        String tip = mData.get(position);
+        holder.myTextView.setText(tip);
     }
 
     // Total number of rows
     @Override
     public int getItemCount() {
         return mData.size();
+    }
+
+    // Convenience method for getting data at click position
+    String getItem(int id) {
+        return mData.get(id);
+    }
+
+    // Allows clicks events to be caught
+    void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    // Parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position);
     }
 
     // Stores and recycles views as they are scrolled off screen
@@ -56,20 +71,5 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
-    }
-
-    // Convenience method for getting data at click position
-    String getItem(int id) {
-        return mData.get(id);
-    }
-
-    // Allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // Parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
     }
 }
