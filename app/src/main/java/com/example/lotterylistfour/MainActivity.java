@@ -40,6 +40,8 @@ ItemDecoration (Default behavior, but can be overridden): Responsible for drawin
 public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
 
     MyRecyclerViewAdapter adapter;
+    // ArrayList for storing the data
+    ArrayList<String> tips = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         setContentView(R.layout.activity_main);
 
         // Data to populate the RecyclerView with
-        ArrayList<String> tips = new ArrayList<>();
         tips.add("Tip 1");
         tips.add("Tip 2");
         tips.add("Tip 3");
@@ -63,8 +64,22 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         recyclerView.setAdapter(adapter);
     }
 
+    // Alternative 1: Toast message for clicking the item
+    /*
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_LONG).show();
+    }
+    */
+
+    // Alternative 2: Removing an item when clicking
+    @Override
+    public void onItemClick(View view, int position) {
+        String item = tips.get(position);
+        tips.remove(position);
+        adapter.notifyItemRemoved(position);
+        adapter.notifyItemRangeChanged(position, tips.size());
+        // Show the removed item label`enter code here`
+        Toast.makeText(this, "Item removed : " + item, Toast.LENGTH_SHORT).show();
     }
 }
