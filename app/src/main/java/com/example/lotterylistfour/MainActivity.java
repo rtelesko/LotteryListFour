@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         tips.add("Tip 3");
         tips.add("Tip 4");
         tips.add("Tip 5");
+        tips.add("Tip 6");
+        tips.add("Tip 7");
+        tips.add("Tip 8");
+        tips.add("Tip 9");
+        tips.add("Tip 10");
+        tips.add("Tip 11");
+        tips.add("Tip 12");
+        tips.add("Tip 13");
+        tips.add("Tip 14");
+        tips.add("Tip 15");
 
         // Set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvTips);
